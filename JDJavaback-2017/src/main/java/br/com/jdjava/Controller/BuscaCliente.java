@@ -8,17 +8,14 @@ public class BuscaCliente {
 	
 	public static void main(String[] args) throws SQLException {
 		ClienteBot clienteBot = new ClienteBot();
-		//int qtdBot = 3000;
+		int qtdBot = 3000;
 		
-		//clienteBot.GerarClienteBot(qtdBot);
+		clienteBot.GerarClienteBot(qtdBot);
 		
-		//System.out.println("Bots Gerados");
+		//double valor = 560;
 		
-		double valor = 560;
 		
-		clienteBot.BuscaClienteBot(valor);
-		
-		System.out.println("Clientes buscados");
+		//clienteBot.BuscaClienteBot(valor);
 		
 	}
 

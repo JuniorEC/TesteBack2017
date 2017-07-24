@@ -1,16 +1,15 @@
 package br.com.jdjava.ModelCliente;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 
 import br.com.jdjava.JDBC.ClienteDAO;
 
 public class ClienteBot {
 	
-	public String GerarClienteBot(int qtdBot) throws SQLException {
+	public void GerarClienteBot(int qtdBot) throws SQLException {
 		
+		int 	i;
 		int 	index;
 		String 	nomes [] ={"Miguel","Sophia","Davi","Alice","Arthur","Julia","Pedro","Isabella","Gabriel","Manuela","Bernardo","Laura",
 							"Lucas","Luiza","Matheus","Valentina","Rafael","Giovanna","Heitor","Maria","Eduarda","Enzo","Helena","Guilherme","Beatriz",
@@ -31,10 +30,17 @@ public class ClienteBot {
 		String 	nomeCompleto = "";
 		String 	cpf= "";
 		Boolean ativo = true;
-		Double valor = 0.0;
-		Random random = new Random();
+		Double 	valor = 0.0;
+		Random 	random = new Random();
+		ClienteDAO clienteDAO = new ClienteDAO();
 		
-		for(int i = 1; i<=qtdBot; i++) {
+		//clienteDAO.BuscaUltimoId();
+		
+		if(clienteDAO.BuscaUltimoId()>qtdBot) {
+			i = clienteDAO.BuscaUltimoId();
+		}
+		
+		for( i = 1 ; i<=qtdBot; i++) {
 			
 			ClienteDados clienteDados = new ClienteDados();
 			
@@ -63,23 +69,26 @@ public class ClienteBot {
 			ClienteDAO clienteDao = new ClienteDAO();
 			clienteDao.InsereClienteBot(clienteDados);
 			
-			System.out.println( clienteDados.toString() );
+			
 		}
 		
-		return ClienteDados.class.toString();
+		
 		
 	}
 	
-	public List<ClienteDados> BuscaClienteBot(double valor) {
-		List<ClienteDados> clienteDado = new ArrayList<ClienteDados>();
+	public void BuscaClienteBot(double valor) {
+		
 		ClienteDAO clienteDAO = new ClienteDAO();
 		try {
+				
+			//System.out.println(clienteDAO.getListaClientes(valor));
 			clienteDAO.getListaClientes(valor);
+			
+				
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return clienteDado;
 	}
 	
 

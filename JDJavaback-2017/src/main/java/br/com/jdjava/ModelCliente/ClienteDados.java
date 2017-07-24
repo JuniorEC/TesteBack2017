@@ -2,7 +2,7 @@ package br.com.jdjava.ModelCliente;
 
 import java.io.Serializable;
 
-public class ClienteDados implements Serializable {
+public class ClienteDados implements Serializable,Comparable<ClienteDados> {
 	
 	/**
 	 * 
@@ -119,6 +119,17 @@ public class ClienteDados implements Serializable {
 		builder.append(vlTotalCliente);
 		builder.append("]");
 		return builder.toString();
+	}
+
+	@Override
+	public int compareTo(ClienteDados o) {
+		if(this.vlTotalCliente > o.getVlTotalCliente()) {
+			return -1;
+		}
+		if(this.vlTotalCliente < o.getVlTotalCliente()) {
+			return 1;
+		}
+		return 0;
 	}
 	
 	
