@@ -17,8 +17,7 @@ import br.com.jdjava.ModelCliente.ClienteDados;
 public class ClienteDAO {
 	
 	private Connection connection;
-	@SuppressWarnings("unused")
-	private int Uid;
+	
 	
 	public ClienteDAO() {
 		
@@ -31,7 +30,7 @@ public class ClienteDAO {
 		try {
 			
 			String sql = "insert into tb_customer_account" +
-	                " (id_customer,cpf_cnp,nm_customer,is_active,vl_total)" +
+	                " (id_customer,cpf_cnpj,nm_customer,is_active,vl_total)" +
 	                " values (?,?,?,?,?)";
 	        PreparedStatement stmt = this.connection.prepareStatement(sql);
 
@@ -39,8 +38,8 @@ public class ClienteDAO {
 	        stmt.setInt(1, clienteDados.getIdCliente());
 	        stmt.setString(2, clienteDados.getCpfCliente());
 	        stmt.setString(3, clienteDados.getNomeCliente());
-	        stmt.setBoolean(3, clienteDados.getAtivoCliente());
-	        stmt.setDouble(3, clienteDados.getVlTotalCliente());
+	        stmt.setBoolean(4, clienteDados.getAtivoCliente());
+	        stmt.setDouble(5, clienteDados.getVlTotalCliente());
 	        stmt.execute();
 	        stmt.close();
 		} catch (Exception e) {
@@ -51,8 +50,8 @@ public class ClienteDAO {
 		}
 	}
 	
-	//public List<ClienteDados> getListaClientes(double valor) throws SQLException {
-	public void getListaClientes(double valor) throws SQLException {	
+	public List<ClienteDados> getListaClientes(double valor, int idInicial, int idFinal) throws SQLException {
+	//public void getListaClientes(double valor, int idInicial, int idFinal) throws SQLException {	
 		try {
 			
 			List<ClienteDados> clienteDado = new ArrayList<ClienteDados>();
@@ -66,13 +65,13 @@ public class ClienteDAO {
 				
 	             ClienteDados clienteDados = new ClienteDados();
 	             clienteDados.setIdCliente(rs.getInt("id_customer"));
-	             clienteDados.setCpfCliente(rs.getString("cpf_cnp"));
+	             clienteDados.setCpfCliente(rs.getString("cpf_cnpj"));
 	             clienteDados.setNomeCliente(rs.getString("nm_customer"));
 	             clienteDados.setAtivoCliente(rs.getBoolean("is_active"));
 	             clienteDados.setVlTotalCliente(rs.getDouble("vl_total"));
 	             
 	             // adicionando o objeto à lista
-	             if ((1500<=clienteDados.getIdCliente()) && (clienteDados.getIdCliente()<=2700) && clienteDados.getVlTotalCliente()>=valor) {
+	             if ((idInicial<=clienteDados.getIdCliente()) && (clienteDados.getIdCliente()<=idFinal) && clienteDados.getVlTotalCliente()>=valor) {
 	             
 	            	 clienteDado.add(clienteDados);
 	            	 System.out.println("=======================CLIENTE REGISTRADO================================");
@@ -103,7 +102,7 @@ public class ClienteDAO {
 			}
 	         rs.close();
 	         stmt.close();
-	         //return clienteDado;
+	         return clienteDado;
 			
 		} catch (Exception e) {
 			throw new RuntimeException(e);
@@ -112,7 +111,7 @@ public class ClienteDAO {
 		}
 	}
 	
-	public int BuscaUltimoId() throws SQLException {
+	public int BuscaUltimoId(int qtdBot) throws SQLException {
 		
 		try {
 			
@@ -120,11 +119,13 @@ public class ClienteDAO {
 			PreparedStatement stmt;
 			stmt = this.connection.prepareStatement(sql);
 			ResultSet rs = stmt.executeQuery();
+			int UId = 0;
 			
-			
-            int UId = 0;
-            this.Uid = (rs.getInt("MAX(id_customer)"));
+			while (rs.next()){
+				
+			UId = (rs.getInt("MAX(id_customer)"));
             
+			}
             rs.close();
 	        stmt.close();
 	         

@@ -1,6 +1,8 @@
 package br.com.jdjava.ModelCliente;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 import br.com.jdjava.JDBC.ClienteDAO;
@@ -9,7 +11,7 @@ public class ClienteBot {
 	
 	public void GerarClienteBot(int qtdBot) throws SQLException {
 		
-		int 	i;
+		int 	i = 0;
 		int 	index;
 		String 	nomes [] ={"Miguel","Sophia","Davi","Alice","Arthur","Julia","Pedro","Isabella","Gabriel","Manuela","Bernardo","Laura",
 							"Lucas","Luiza","Matheus","Valentina","Rafael","Giovanna","Heitor","Maria","Eduarda","Enzo","Helena","Guilherme","Beatriz",
@@ -27,21 +29,21 @@ public class ClienteBot {
 								"da Mata","da Rosa","da Mota","da Paz","da Luz","da Conceição","das Neves","Fernandes","Gonçalves","Rodrigues","Martins","Lopes",
 								"Gomes","Mendes","Nunes","Carvalho","Melo","Cardoso,","Pires","Jesus","Aragão","Viana","Farias"};
 		String 	numeros = "0123456789";
-		String 	nomeCompleto = "";
-		String 	cpf= "";
 		Boolean ativo = true;
 		Double 	valor = 0.0;
 		Random 	random = new Random();
 		ClienteDAO clienteDAO = new ClienteDAO();
 		
-		//clienteDAO.BuscaUltimoId();
+		i = clienteDAO.BuscaUltimoId(qtdBot);
 		
-		if(clienteDAO.BuscaUltimoId()>qtdBot) {
-			i = clienteDAO.BuscaUltimoId();
+		if(i>=qtdBot) {
+			qtdBot = i + qtdBot;
 		}
 		
-		for( i = 1 ; i<=qtdBot; i++) {
+		for( i++ ; i<=qtdBot; i++) {
 			
+			String 	nomeCompleto = "";
+			String 	cpf= "";
 			ClienteDados clienteDados = new ClienteDados();
 			
 			for (int j = 0; j<12; j++) {
@@ -54,12 +56,16 @@ public class ClienteBot {
 			for(int k = 1; k < 2; k++) {
 				
 			nomeCompleto += nomes[random.nextInt( nomes.length )];
+			nomeCompleto += " ";
 			nomeCompleto += sobrenomes[random.nextInt( sobrenomes.length )];
 			//nomeCompleto += nomes.substring( index, index + 1 );
 			
 			}
+			for(int l = 1; l < 5; l++){
+				
+			valor = (random.nextDouble()*random.nextDouble()) * 1000;
 			
-			valor = (7.98*i)/0.5*25;
+			}
 			clienteDados.setIdCliente(i);
 			clienteDados.setCpfCliente(cpf);
 			clienteDados.setNomeCliente(nomeCompleto);
@@ -68,7 +74,7 @@ public class ClienteBot {
 			
 			ClienteDAO clienteDao = new ClienteDAO();
 			clienteDao.InsereClienteBot(clienteDados);
-			
+			System.out.println("clientes gerados"+"ID"+  i);
 			
 		}
 		
@@ -76,19 +82,48 @@ public class ClienteBot {
 		
 	}
 	
-	public void BuscaClienteBot(double valor) {
+	public void BuscaClienteBot(double valor, int idInicial, int idFinal) {
 		
 		ClienteDAO clienteDAO = new ClienteDAO();
+		
 		try {
 				
 			//System.out.println(clienteDAO.getListaClientes(valor));
-			clienteDAO.getListaClientes(valor);
+			clienteDAO.getListaClientes(valor, idInicial, idFinal);
 			
 				
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	
+	public double MediaVlTotal(double valor, int idInicial, int idFinal) {
+		
+			double	somaValorTotal	= 0;
+			double	media			= 0;
+			ClienteDAO clienteDAO 	= new ClienteDAO();
+			
+			try {
+				
+				List<ClienteDados> clienteDado = new ArrayList<ClienteDados>();
+				clienteDAO.getListaClientes(valor, idInicial, idFinal);
+				
+				for(int i = 0; i<=clienteDado.size(); i++) {
+					
+					somaValorTotal	= somaValorTotal + clienteDado.indexOf(5);
+				
+				}
+				
+				media = somaValorTotal/clienteDado.size();
+				
+				return media;
+				
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				throw new RuntimeException(e);
+			}
+		
 	}
 	
 
