@@ -1,10 +1,9 @@
 package br.com.jdjava.ModelCliente;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 
+import br.com.jdjava.FileUtil.ExportarExcel;
 import br.com.jdjava.JDBC.ClienteDAO;
 
 public class ClienteBot {
@@ -91,6 +90,8 @@ public class ClienteBot {
 			//System.out.println(clienteDAO.getListaClientes(valor));
 			clienteDAO.getListaClientes(valor, idInicial, idFinal);
 			
+			clienteDAO.ExcelSql();
+			
 				
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -98,26 +99,11 @@ public class ClienteBot {
 		}
 	}
 	
-	public double MediaVlTotal(double valor, int idInicial, int idFinal) {
-		
-			double	somaValorTotal	= 0;
-			double	media			= 0;
-			ClienteDAO clienteDAO 	= new ClienteDAO();
+	public void MediaVlTotal(double valor, int idInicial, int idFinal) {
 			
 			try {
-				
-				List<ClienteDados> clienteDado = new ArrayList<ClienteDados>();
-				clienteDAO.getListaClientes(valor, idInicial, idFinal);
-				
-				for(int i = 0; i<=clienteDado.size(); i++) {
-					
-					somaValorTotal	= somaValorTotal + clienteDado.indexOf(5);
-				
-				}
-				
-				media = somaValorTotal/clienteDado.size();
-				
-				return media;
+				ClienteDAO clienteDAO = new ClienteDAO();
+				System.out.println("A média aritimética é: " + clienteDAO.MediaVlTotal(valor, idInicial, idFinal) + " R$");
 				
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
