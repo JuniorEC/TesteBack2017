@@ -50,7 +50,6 @@ public class MenuCliente extends Application {
 	              try {
 					addCliente.start(palco);
 				} catch (Exception e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 	          }
@@ -67,12 +66,10 @@ public class MenuCliente extends Application {
 	              try {
 					buscaCliente.start(palco);
 				} catch (Exception e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 	          }
 	      });
-		  //lblMensagem.setText("Estou aprendendo JavaFX!");
 		  tilePane.getChildren().addAll(btnAddUsr, btnSrcUsr, btnExit);
 		  ObservableList<Node> children = tilePane.getChildren();
 	      children.forEach(button->{

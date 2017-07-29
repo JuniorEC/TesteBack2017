@@ -35,5 +35,6 @@
 	<classpathentry kind="lib" path="C:/Users/Junior/.m2/repository/poi-3.16/lib/commons-logging-1.2.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Junior/.m2/repository/poi-3.16/lib/junit-4.12.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Junior/.m2/repository/poi-3.16/lib/log4j-1.2.17.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Junior/.m2/repository/poi-3.16/lib/bootstrapfx-core-0.2.1.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

@@ -10,6 +10,8 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.TilePane;
 import javafx.stage.Stage;
 
+
+
 public class AddCliente extends Application {
 	
 	 public static void main(String[] args) {
@@ -37,6 +39,7 @@ public class AddCliente extends Application {
 		      });
 		     
 		     Scene cena = new Scene(tilePane, 600, 400);
+		     cena.getStylesheets().add("bootstrapfx.css");
 			  palco.setTitle("Adicionar Cliente");
 			  palco.setScene(cena);
 			  palco.show();

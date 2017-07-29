@@ -7,20 +7,7 @@ import br.com.jdjava.ModelCliente.ClienteBot;
 
 public class BuscaCliente {
 	
-	public static void main(String[] args) throws SQLException {
-		//ClienteBot clienteBot = new ClienteBot();
-		//int qtdBot = 3000;
-		
-		//clienteBot.GerarClienteBot(qtdBot);
-		
-		//clienteBot.MediaVlTotal(560, 1500, 2700);
-		
-		//double valor = 560;
-		
-		ClienteDAO clienteDao = new ClienteDAO();
-		clienteDao.ExcelSql();
-		
-		//clienteBot.BuscaClienteBot(valor, 1500, 2700);
+	public void BuscarCliente() {
 		
 	}
 

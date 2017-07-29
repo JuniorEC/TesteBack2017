@@ -5,45 +5,46 @@
   <version>0.0.1-SNAPSHOT</version>
   <name>JDjavaback20017</name>
   <dependencies>
-  		<dependency>
-    		<groupId>mysql</groupId>
-    		<artifactId>mysql-connector-java</artifactId>
-    		<version>6.0.6</version>
-		</dependency>
-		<dependency>
-    		<groupId>org.jxls</groupId>
-    		<artifactId>jxls-jexcel</artifactId>
-    		<version>1.0.6</version>
-		</dependency>
-		  <dependency>
-        <groupId>org.apache.poi</groupId>
-         <artifactId>poi</artifactId>
-         <version>3.10-FINAL</version>
-  </dependency>
-   
-  <dependency>
+  	<dependency>
+  		<groupId>org.kordamp.bootstrapfx</groupId>
+  		<artifactId>bootstrapfx-core</artifactId>
+  		<version>0.2.1</version>
+  		<type>pom</type>
+	</dependency>
+  	<dependency>
+    	<groupId>mysql</groupId>
+    	<artifactId>mysql-connector-java</artifactId>
+    	<version>6.0.6</version>
+	</dependency>
+	<dependency>
+    	<groupId>org.jxls</groupId>
+    	<artifactId>jxls-jexcel</artifactId>
+    	<version>1.0.6</version>
+	</dependency>
+	<dependency>
+       <groupId>org.apache.poi</groupId>
+       <artifactId>poi</artifactId>
+       <version>3.10-FINAL</version>
+  	</dependency>
+  	<dependency>
        <groupId>net.sourceforge.barbecue</groupId>
        <artifactId>barbecue</artifactId>
        <version>1.5-beta1</version>
-  </dependency>
-   
-  <dependency>
+  	</dependency>
+  	<dependency>
        <groupId>net.sf.jasperreports</groupId>
        <artifactId>jasperreports</artifactId>
        <version>5.0.1</version>
-  </dependency>
-  
-
-<dependency>
-        <groupId>net.sf.jasperreports</groupId>
-        <artifactId>jasperreports-fonts</artifactId>
-        <version>4.0.0</version>
-  </dependency>
-   
-  <dependency>
-        <groupId>xerces</groupId>
-        <artifactId>xercesImpl</artifactId>
-        <version>2.10.0</version>
-  </dependency>
+  	</dependency>
+	<dependency>
+       <groupId>net.sf.jasperreports</groupId>
+       <artifactId>jasperreports-fonts</artifactId>
+       <version>4.0.0</version>
+  	</dependency>
+  	<dependency>
+       <groupId>xerces</groupId>
+       <artifactId>xercesImpl</artifactId>
+       <version>2.10.0</version>
+	</dependency>
  </dependencies>
 </project>
