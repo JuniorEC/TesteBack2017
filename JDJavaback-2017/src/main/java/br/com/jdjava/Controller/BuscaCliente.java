@@ -1,14 +1,18 @@
 package br.com.jdjava.Controller;
 
-import java.sql.SQLException;
+import java.util.List;
 
-import br.com.jdjava.JDBC.ClienteDAO;
-import br.com.jdjava.ModelCliente.ClienteBot;
+import br.com.jdjava.ModelCliente.ClienteDados;
 
 public class BuscaCliente {
-	
-	public void BuscarCliente() {
+
+	public ClienteDados BuscarCliente(List<ClienteDados> clienteDado) {
 		
+		ClienteDados cliente = null;
+		
+		cliente = clienteDado.get(1);
+		
+		return cliente;
 	}
 
 }

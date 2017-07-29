@@ -1,1 +1,1 @@
-ClienteDados [idCliente=1500, cpfCliente=198189171098, nomeCliente=AnaJulia da Paz, AtivoCliente=true, vlTotalCliente=18750.0]/n
+ClienteDados [idCliente=2664, cpfCliente=494056825985, nomeCliente=Pietro Moraes, AtivoCliente=true, vlTotalCliente=560.3741677134108]

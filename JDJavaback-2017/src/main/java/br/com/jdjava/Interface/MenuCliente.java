@@ -1,16 +1,14 @@
 package br.com.jdjava.Interface;
 
+import org.kordamp.bootstrapfx.scene.layout.Panel;
+
 import javafx.application.Application;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
-import javafx.geometry.Orientation;
-import javafx.geometry.Pos;
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.layout.TilePane;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
 public class MenuCliente extends Application {
@@ -20,17 +18,15 @@ public class MenuCliente extends Application {
 	 }
 
 	 @Override
-	 public void start(Stage palco) throws Exception {
-		 TilePane tilePane = new TilePane();
-	     tilePane.setPrefColumns(3);
-	     tilePane.setPadding(new Insets(5, 5, 5, 5));
-	     tilePane.setVgap(5);
-	     tilePane.setHgap(5);
-	     tilePane.setStyle("-fx-background-color: D0D0D0;");
-	     tilePane.setAlignment(Pos.CENTER);
+	 public void start(final Stage palco) throws Exception {
+		 Panel panel = new Panel("Bem vindo!");
+	     panel.getStyleClass().add("panel-primary");           
+	     BorderPane content = new BorderPane();
+	     content.setPadding(new Insets(20));
 	     
 		 Button btnExit = new Button();
 		 btnExit.setText("Fechar");
+		 btnExit.getStyleClass().setAll("btn","btn-danger");
 		 btnExit.setOnAction(new EventHandler<ActionEvent>() {
 	          
 	          @Override
@@ -41,11 +37,12 @@ public class MenuCliente extends Application {
 	     
 		 Button btnAddUsr = new Button();
 		 btnAddUsr.setText("Adicionar um Cliente");
+		 btnAddUsr.getStyleClass().setAll("btn","btn-primary");
 		 btnAddUsr.setOnAction(new EventHandler<ActionEvent>() {
 	          
 	          @Override
 	          public void handle(ActionEvent event) {
-	              tilePane.setOrientation(Orientation.HORIZONTAL);
+	              
 	              AddCliente addCliente = new AddCliente();
 	              try {
 					addCliente.start(palco);
@@ -57,11 +54,12 @@ public class MenuCliente extends Application {
 		  
 		  Button btnSrcUsr = new Button();
 		  btnSrcUsr.setText("Buscar Cliente");
+		  btnSrcUsr.getStyleClass().setAll("btn","btn-primary");
 		  btnSrcUsr.setOnAction(new EventHandler<ActionEvent>() {
 	          
 	          @Override
 	          public void handle(ActionEvent event) {
-	              tilePane.setOrientation(Orientation.HORIZONTAL);
+	              
 	              BuscaCliente buscaCliente = new BuscaCliente();
 	              try {
 					buscaCliente.start(palco);
@@ -70,17 +68,16 @@ public class MenuCliente extends Application {
 				}
 	          }
 	      });
-		  tilePane.getChildren().addAll(btnAddUsr, btnSrcUsr, btnExit);
-		  ObservableList<Node> children = tilePane.getChildren();
-	      children.forEach(button->{
-	          ((Button)button).setMinWidth(Button.USE_PREF_SIZE);
-	          ((Button)button).setMaxWidth(Double.MAX_VALUE);
-	          ((Button)button).setMinHeight(Button.USE_PREF_SIZE);
-	          ((Button)button).setMaxHeight(Double.MAX_VALUE);
-	      });
-	
-		  Scene cena = new Scene(tilePane, 600, 400);
-		  palco.setTitle("Aprendendo JavaFX");
+		  
+		  
+		  Scene cena = new Scene(panel, 600, 400);
+		  cena.getStylesheets().add("bootstrapfx.css");
+		  content.setLeft(btnAddUsr);
+		  content.setCenter(btnSrcUsr);
+		  content.setRight(btnExit);
+		  
+		  panel.setBody(content);
+		  palco.setTitle("SisGC - Sistema de gestão de Clientes");
 		  palco.setScene(cena);
 		  palco.show();
 
